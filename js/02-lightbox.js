@@ -3,17 +3,10 @@ import { galleryItems } from "./gallery-items.js";
 
 const galeryContainer = document.querySelector(".gallery");
 const renderGaleryItems = galleryItems
-  .map((item) => {
-    return `<div class="gallery__item">
-  <a class="gallery__link" href="${item.original}">
-    <img
-      class="gallery__image"
-      src="${item.preview}"
-      data-source="${item.original}"
-      alt="${item.description}"
-    />
-  </a>
-</div>`;
+  .map(({ preview, original, description }) => {
+    return `<a class="gallery__item" href="${original}">
+    <img class="gallery__image" src="${preview}" alt="${description}" />
+  </a>`;
   })
   .join("");
 
@@ -23,4 +16,5 @@ new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionPosition: "bottom",
   captionDelay: 250,
+  showCounter: false,
 });
